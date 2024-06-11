@@ -1,0 +1,3 @@
+//ignore anthingin bin folder
+*
+!.gitignore
