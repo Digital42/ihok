@@ -1,6 +1,9 @@
 #include <core/logger.h>
 #include <core/asserts.h>
 
+// fix later
+#include <platform/platform.h>
+
 int main(void){
     KFATAL("A test msg: %f", 6.66f);
     KERROR("A test msg: %f", 6.66f);
@@ -9,7 +12,12 @@ int main(void){
     KDEBUG("A test msg: %f", 6.66f);
     KTRACE("A test msg: %f", 6.66f);
 
-    KASSERT(1==0);
-
+    platform_state state;
+    if (platform_startup(&state, "engine test", 100, 100, 1280, 720)){
+        while(TRUE){
+            platform_pump_messages(&state);
+        }
+    }
+    platform_shutdown(&state);
     return 0;
 }
