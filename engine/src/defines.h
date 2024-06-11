@@ -102,10 +102,10 @@ STATIC_ASSERT(sizeof(f32) == 4, "Expected f32 to be 4 bytes.");
 STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
 
 /** @brief True.*/
-#define true 1
+#define TRUE 1
 
 /** @brief False. */
-#define false 0
+#define FALSE 0
 
 /**
  * @brief Any id set to this should be considered invalid,
