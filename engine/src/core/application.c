@@ -4,6 +4,7 @@
 #include "logger.h"
 #include "platform/platform.h"
 
+#include "core/kmemory.h"
 typedef struct application_state {
     game* game_inst;
     b8 is_running;
@@ -66,6 +67,9 @@ b8 application_create(game* game_inst) {
 }
 
 b8 application_run() {
+    //this is for testing memory allocation tracking delete after 6/13/24
+    KINFO(get_memory_usage_str());
+
     while(app_state.is_running){
         if (!platform_pump_messages(&app_state.platform)){
             app_state.is_running = FALSE;

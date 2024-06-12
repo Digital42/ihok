@@ -1,6 +1,8 @@
 #include "core/application.h"
 #include "core/logger.h"
+#include "core/kmemory.h"
 #include "game_types.h"
+ 
 
 //externally defined function to create game
 //defined in main.c
@@ -9,6 +11,8 @@ extern b8 create_game(game* out_game);
 // NEW ENTRY FOR POINT FOR MAIN //
 /////////////////////////////////
 int main(void){
+
+    initialize_memory();
 
     //request game instance from application
     game game_inst;
@@ -33,5 +37,7 @@ int main(void){
         return 2;   
     }
     
+    shutdown_memory();
+
     return 0;
 }

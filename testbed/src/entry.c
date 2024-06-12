@@ -2,7 +2,8 @@
 #include <entry.h>
 
 //remove this later
-#include <platform/platform.h>
+//#include <platform/platform.h>
+#include<core/kmemory.h>
 
 // func definition to create game
 b8 create_game(game* out_game){
@@ -20,7 +21,7 @@ b8 create_game(game* out_game){
     out_game->on_resize = game_on_resize;
 
     // create the game state
-    out_game->state = platform_allocate(sizeof(game_state), FALSE);
+    out_game->state = kallocate(sizeof(game_state), MEMORY_TAG_GAME);
 
     return TRUE;
 }
