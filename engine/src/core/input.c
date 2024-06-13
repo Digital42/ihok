@@ -128,6 +128,8 @@ b8 input_was_key_up(keys key) {
     return state.keyboard_previous.keys[key] == FALSE;
 }
 
+
+//mouse inputs buttons
 b8 input_is_button_down(buttons button) {
     if (!initialized) {
         return FALSE;

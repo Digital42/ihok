@@ -28,7 +28,7 @@ KAPI void* _darray_resize(void* array);
 KAPI void* _darray_push(void* array, const void* value_ptr);
 KAPI void _darray_pop(void* array, void* dest);
 
-KAPI void* _darray_push_at(void* array, u64 index, void* dest);
+KAPI void* _darray_pop_at(void* array, u64 index, void* dest);
 KAPI void* _darray_insert_at(void* array, u64 index, void* value_ptr);
 
 #define DARRAY_DEFAULT_CAPACITY 1
@@ -52,10 +52,10 @@ KAPI void* _darray_insert_at(void* array, u64 index, void* value_ptr);
 #define darray_pop(array, value_ptr) \
     _darray_pop(array, value_ptr)                                 
 
-#define darray_insert_at(array, value)            \
+#define darray_insert_at(array, index, value)            \
     {                                            \
         typeof(value ) temp = value;             \
-        array = _darray_insert_at(array, &temp); \
+        array = _darray_insert_at(array, index, &temp); \
     } 
 
 #define darray_pop_at(array, index, value_ptr)    \

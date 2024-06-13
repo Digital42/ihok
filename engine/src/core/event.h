@@ -17,7 +17,7 @@ typedef struct event_context {
         u16 u16[8];  
 
         i8 i8[16];
-        u8 u8[26];
+        u8 u8[16];
 
         char c[16];
     } data;
@@ -48,7 +48,7 @@ KAPI b8 event_unregister(u16 code, void* listener, PFN_on_event on_event);
     sender = pointer to the sender can be 0/null
     data = event data 
 */
-KAPI b8 event_fire(u16 code, void* listener, event_context context);
+KAPI b8 event_fire(u16 code, void* sender, event_context context);
 
 typedef enum system_event_code {
     /** @brief Shuts the application down on the next frame. */

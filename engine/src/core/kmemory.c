@@ -2,24 +2,10 @@
 
 #include "core/logger.h"
 #include "platform/platform.h"
+#include "core/kstring.h"
 
-// eventually replace with custom string lib
 #include<string.h>
 #include<stdio.h>
-
-//random string duplicator the _strdup() wasnt working
-char* strdup (const char* s)
-{
-  size_t slen = strlen(s);
-  char* result = malloc(slen + 1);
-  if(result == NULL)
-  {
-    return NULL;
-  }
-
-  memcpy(result, s, slen+1);
-  return result;
-}
 
 struct memory_stats {
     u64 total_allocated;
@@ -124,6 +110,6 @@ char* get_memory_usage_str() {
         offset += length;
     }
 
-    char* out_string = strdup(buffer);
+    char* out_string = string_duplicate(buffer);
     return out_string;
 }

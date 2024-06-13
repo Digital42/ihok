@@ -11,11 +11,11 @@ void* _darray_create(u64 length, u64 stride) {
     new_array[DARRAY_CAPACITY] = length;
     new_array[DARRAY_LENGTH] = 0;
     new_array[DARRAY_STRIDE] = stride;
-    return (void*) (new_array + DARRAY_FIELD_LENGTH);
+    return (void*)(new_array + DARRAY_FIELD_LENGTH);
 }
 
 void _darray_destroy(void* array) {
-    u64* header = (u64*) - DARRAY_FIELD_LENGTH;;
+    u64* header = (u64*)array - DARRAY_FIELD_LENGTH;;
     u64 header_size = DARRAY_FIELD_LENGTH * sizeof(u64);
     u64 total_size = header_size + header[DARRAY_CAPACITY] * header[DARRAY_STRIDE];
     kfree(header, total_size, MEMORY_TAG_DARRAY);
@@ -99,14 +99,17 @@ void* _darray_insert_at(void* array, u64 index, void* value_ptr) {
         KERROR("Index outside of the bounds of this array. Len: %i, index: %index", length, index);
         return array;
     }
+    if (length >= darray_capacity(array)) {
+        array = _darray_resize(array);
+    }
 
     u64 addr = (u64)array;
 
     // if not on the last element del the entry and copy the rest inward
     if (index != length - 1)  {
         kcopy_memory(
-            (void*)(addr + ((index +1) * stride)),
-            (void*)(addr + (index ) * stride), 
+            (void*)(addr + ((index + 1) * stride)),
+            (void*)(addr + (index * stride)), 
             stride * (length - index));           
     } 
     //set value at the index
