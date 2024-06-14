@@ -57,7 +57,7 @@ void input_process_key(keys key, b8 pressed) {
         // fire off an event for immediate processing
         event_context context;
         context.data.u16[0] = key;
-        event_fire(pressed ? EVENT_CODE_KEY_PRESSED : EVENT_CODE_KEY_PRESSED, 0, context);
+        event_fire(pressed ? EVENT_CODE_KEY_PRESSED : EVENT_CODE_KEY_RELEASED, 0, context);
     }
 }
 
